@@ -7,7 +7,7 @@ class RegistrationForm extends React.Component {
     name: "",
     document: "",
     email: "",
-    phone: ""
+    phone: "",
   };
   componentDidMount() {
     if (this.props.user) {
@@ -15,49 +15,49 @@ class RegistrationForm extends React.Component {
       this.setState({ id, name, document, email, phone });
     }
   }
-  onChange = e => {
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
     console.log(this.props);
   };
-  submitNew = e => {
+  submitNew = (e) => {
     fetch(`${USERS_API_URL}`, {
       method: "post",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name: this.state.name,
         document: this.state.document,
         email: this.state.email,
-        phone: this.state.phone
-      })
+        phone: this.state.phone,
+      }),
     })
-      .then(res => res.json())
-      .then(user => {
+      .then((res) => res.json())
+      .then((user) => {
         this.props.addUserToState(user);
         this.props.toggle();
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
-  submitEdit = e => {
+  submitEdit = (e) => {
     e.preventDefault();
     fetch(`${USERS_API_URL}/${this.state.id}`, {
       method: "put",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name: this.state.name,
         document: this.state.document,
         email: this.state.email,
-        phone: this.state.phone
-      })
+        phone: this.state.phone,
+      }),
     })
       .then(() => {
         this.props.toggle();
         this.props.updateUserIntoState(this.state.id);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
   render() {
     return (
@@ -72,7 +72,7 @@ class RegistrationForm extends React.Component {
           />
         </FormGroup>
         <FormGroup>
-          <Label for="document">Document:</Label>
+          <Label for="document">Description:</Label>
           <Input
             type="text"
             name="document"

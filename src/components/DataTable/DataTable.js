@@ -3,20 +3,20 @@ import { Table, Button } from "reactstrap";
 import RegistrationModal from "../form/RegistrationModal";
 import { USERS_API_URL } from "../../constants";
 class DataTable extends Component {
-  deleteItem = id => {
+  deleteItem = (id) => {
     let confirmDeletion = window.confirm("Do you really wish to delete it?");
     if (confirmDeletion) {
       fetch(`${USERS_API_URL}/${id}`, {
         method: "delete",
         headers: {
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       })
-        .then(res => {
+        .then((res) => {
           this.props.deleteItemFromState(id);
           this.props.updateState();
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     }
   };
 
@@ -29,7 +29,7 @@ class DataTable extends Component {
             <th>Id</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Document</th>
+            <th>Description</th>
             <th>Phone</th>
             <th style={{ textAlign: "center" }}>Actions</th>
           </tr>
@@ -42,7 +42,7 @@ class DataTable extends Component {
               </td>
             </tr>
           ) : (
-            items.map(item => (
+            items.map((item) => (
               <tr key={item.id}>
                 <th scope="row">{item.id}</th>
                 <td>{item.name}</td>

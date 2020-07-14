@@ -5,27 +5,27 @@ import RegistrationModal from "../form/RegistrationForm";
 import { USERS_API_URL } from "../../constants";
 class Home extends Component {
   state = {
-    items: []
+    items: [],
   };
   componentDidMount() {
     this.getItens();
   }
   getItens = () => {
     fetch(USERS_API_URL)
-      .then(res => res.json())
-      .then(res => this.setState({ items: res }))
-      .catch(err => console.log(err));
+      .then((res) => res.json())
+      .then((res) => this.setState({ items: res }))
+      .catch((err) => console.log(err));
   };
-  addUserToState = user => {
-    this.setState(previous => ({
-      items: [...previous.items, user]
+  addUserToState = (user) => {
+    this.setState((previous) => ({
+      items: [...previous.items, user],
     }));
   };
-  updateState = id => {
+  updateState = (id) => {
     this.getItens();
   };
-  deleteItemFromState = id => {
-    const updated = this.state.items.filter(item => item.id !== id);
+  deleteItemFromState = (id) => {
+    const updated = this.state.items.filter((item) => item.id !== id);
     this.setState({ items: updated });
   };
   render() {
@@ -33,7 +33,7 @@ class Home extends Component {
       <Container style={{ paddingTop: "100px" }}>
         <Row>
           <Col>
-            <h3>My First React + ASP.NET CRUD React</h3>
+            <h3>Employee Management System</h3>
           </Col>
         </Row>
         <Row>
